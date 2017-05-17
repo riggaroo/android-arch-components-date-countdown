@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Date Countdown</string>
+    <string name="date_hint">Hint</string>
+    <string name="event_description">Event Description</string>
+    <string name="add_event">Add Event</string>
+    <string name="title">Title</string>
+    <string name="days_until">%d days remaining</string>
+    <string name="set_date">Set Date</string>
+</resources>
