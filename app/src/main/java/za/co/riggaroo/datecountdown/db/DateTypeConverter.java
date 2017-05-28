@@ -4,18 +4,18 @@ package za.co.riggaroo.datecountdown.db;
 import android.arch.persistence.room.TypeConverter;
 
 import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.ZoneOffset;
 
 public class DateTypeConverter {
 
     @TypeConverter
-    public static LocalDateTime toDate(String timestamp) {
-        return timestamp == null ? null : LocalDateTime.parse(timestamp, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    public static LocalDateTime toDate(Long timestamp) {
+        return timestamp == null ? null : LocalDateTime.ofEpochSecond(timestamp, 0, ZoneOffset.ofTotalSeconds(0));
     }
 
     @TypeConverter
-    public static String toTimestamp(LocalDateTime date) {
-        return date == null ? null : date.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    public static Long toTimestamp(LocalDateTime date) {
+        return date == null ? null : date.toInstant(ZoneOffset.ofTotalSeconds(0)).getEpochSecond();
     }
 }
 
