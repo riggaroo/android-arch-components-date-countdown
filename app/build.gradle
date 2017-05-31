@@ -10,11 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "za.co.riggaroo.datecountdown.injection.MockTestRunner"
-        //jackOptions is deprecated in android Studio 3.0 but this is for educational purposes
-        // to compile this project in android studio 2.3 stable version.
-        jackOptions {
-            enabled true
-        }
+
     }
     buildTypes {
         release {

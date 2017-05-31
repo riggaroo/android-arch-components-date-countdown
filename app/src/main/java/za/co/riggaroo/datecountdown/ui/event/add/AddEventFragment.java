@@ -23,6 +23,7 @@ import za.co.riggaroo.datecountdown.injection.CountdownFactory;
 
 public class AddEventFragment extends LifecycleFragment implements DatePickerDialog.OnDateSetListener {
 
+
     private EditText editTextTitle, editTextDescription;
     private Button buttonAddEvent, buttonSetDate;
     private TextView textViewCurrentDate;
@@ -40,7 +41,8 @@ public class AddEventFragment extends LifecycleFragment implements DatePickerDia
     }
 
     private void setupViewModel() {
-        addEventViewModel = ViewModelProviders.of(this, new CountdownFactory((CountdownApplication) getActivity().getApplication()))
+        CountdownApplication countdownApplication = (CountdownApplication) getActivity().getApplication();
+        addEventViewModel = ViewModelProviders.of(this, new CountdownFactory(countdownApplication))
                 .get(AddEventViewModel.class);
         editTextTitle.setText(addEventViewModel.getEventName().getValue());
         editTextDescription.setText(addEventViewModel.getEventDescription().getValue());

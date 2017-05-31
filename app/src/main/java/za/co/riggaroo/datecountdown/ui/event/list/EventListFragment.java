@@ -48,8 +48,8 @@ public class EventListFragment extends LifecycleFragment {
         setupRecyclerView(v);
         FloatingActionButton floatingActionButton = (FloatingActionButton) v.findViewById(R.id.fab_add);
         floatingActionButton.setOnClickListener(v1 -> startActivity(new Intent(getContext(), AddEventActivity.class)));
-
-        eventListViewModel = ViewModelProviders.of(this, new CountdownFactory((CountdownApplication) getActivity().getApplication())).get(EventListViewModel.class);
+        CountdownApplication application = (CountdownApplication) getActivity().getApplication();
+        eventListViewModel = ViewModelProviders.of(this, new CountdownFactory(application)).get(EventListViewModel.class);
 
         eventListViewModel.getEvents().observe(this, events -> {
             Log.d(TAG, "Events Changed:" + events);
