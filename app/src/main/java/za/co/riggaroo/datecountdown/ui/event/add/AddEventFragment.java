@@ -44,9 +44,9 @@ public class AddEventFragment extends LifecycleFragment implements DatePickerDia
         CountdownApplication countdownApplication = (CountdownApplication) getActivity().getApplication();
         addEventViewModel = ViewModelProviders.of(this, new CountdownFactory(countdownApplication))
                 .get(AddEventViewModel.class);
-        editTextTitle.setText(addEventViewModel.getEventName().getValue());
-        editTextDescription.setText(addEventViewModel.getEventDescription().getValue());
-        textViewCurrentDate.setText(addEventViewModel.getEventDateTime().getValue().toString());
+        editTextTitle.setText(addEventViewModel.getEventName());
+        editTextDescription.setText(addEventViewModel.getEventDescription());
+        textViewCurrentDate.setText(addEventViewModel.getEventDateTime().toString());
     }
 
     private void setupClickListeners() {
@@ -87,7 +87,7 @@ public class AddEventFragment extends LifecycleFragment implements DatePickerDia
             getActivity().finish();
         });
         buttonSetDate.setOnClickListener(v -> {
-            LocalDateTime localDateTime = addEventViewModel.getEventDateTime().getValue();
+            LocalDateTime localDateTime = addEventViewModel.getEventDateTime();
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(), this, localDateTime.getYear(), localDateTime.getMonthValue() - 1, localDateTime.getDayOfMonth());
 
@@ -106,7 +106,7 @@ public class AddEventFragment extends LifecycleFragment implements DatePickerDia
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         addEventViewModel.setEventDateTime(LocalDateTime.of(year, month + 1, dayOfMonth, 0, 0));
-        textViewCurrentDate.setText(addEventViewModel.getEventDateTime().getValue().toString());
+        textViewCurrentDate.setText(addEventViewModel.getEventDateTime().toString());
     }
 
 

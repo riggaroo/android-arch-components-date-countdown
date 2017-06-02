@@ -1,7 +1,5 @@
 package za.co.riggaroo.datecountdown.ui.event.add;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import org.threeten.bp.LocalDateTime;
@@ -22,41 +20,41 @@ public class AddEventViewModel extends ViewModel implements CountdownComponent.I
 
     @Inject
     EventRepository eventRepository;
-    private MutableLiveData<String> eventName = new MutableLiveData<>();
-    private MutableLiveData<String> eventDescription = new MutableLiveData<>();
-    private MutableLiveData<LocalDateTime> eventDateTime = new MutableLiveData<>();
+    private String eventName;
+    private String eventDescription;
+    private LocalDateTime eventDateTime;
 
 
     public AddEventViewModel() {
-        eventDateTime.setValue(LocalDateTime.now());
+        eventDateTime = LocalDateTime.now();
     }
 
-    public LiveData<String> getEventName() {
+    public String getEventName() {
         return eventName;
     }
 
     public void setEventName(String eventName) {
-        this.eventName.setValue(eventName);
+        this.eventName = eventName;
     }
 
-    public LiveData<String> getEventDescription() {
+    public String getEventDescription() {
         return eventDescription;
     }
 
     public void setEventDescription(String eventDescription) {
-        this.eventDescription.setValue(eventDescription);
+        this.eventDescription = eventDescription;
     }
 
-    public MutableLiveData<LocalDateTime> getEventDateTime() {
+    public LocalDateTime getEventDateTime() {
         return eventDateTime;
     }
 
     public void setEventDateTime(LocalDateTime eventDateTime) {
-        this.eventDateTime.setValue(eventDateTime);
+        this.eventDateTime = eventDateTime;
     }
 
     public void addEvent() {
-        Event event = new Event(0, eventName.getValue(), eventDescription.getValue(), eventDateTime.getValue());
+        Event event = new Event(0, eventName, eventDescription, eventDateTime);
         eventRepository.addEvent(event).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new CompletableObserver() {
