@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "za.co.riggaroo.datecountdown"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "za.co.riggaroo.datecountdown.injection.MockTestRunner"
@@ -24,8 +24,8 @@ android {
     }
 }
 ext {
-    arch_version = '1.0.0-alpha1'
-    support_library_version = '25.3.1'
+    arch_version = '1.0.0-alpha5'
+    support_library_version = '26.0.0-beta2'
     dagger_version = "2.8"
     espresso_version = '2.2.2'
     runner_version = '0.5'
@@ -38,9 +38,9 @@ dependencies {
     compile "com.android.support:design:$support_library_version"
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta1'
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile "com.google.dagger:dagger:${dagger_version}"
@@ -55,7 +55,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:${arch_version}"
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.6.3'
+    testCompile 'org.mockito:mockito-core:2.8.9'
     testCompile("android.arch.core:core-testing:${arch_version}", {
         exclude group: 'com.android.support', module: 'support-compat'
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -73,7 +73,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-core-utils'
     })
-    androidTestCompile 'org.mockito:mockito-android:2.6.3'
+    androidTestCompile 'org.mockito:mockito-android:2.7.19'
 
     androidTestCompile("com.android.support.test:runner:${runner_version}") {
         exclude group: 'com.android.support', module: 'support-annotations'
