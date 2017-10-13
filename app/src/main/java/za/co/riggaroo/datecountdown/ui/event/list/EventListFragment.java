@@ -1,11 +1,11 @@
 package za.co.riggaroo.datecountdown.ui.event.list;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +23,7 @@ import za.co.riggaroo.datecountdown.entity.Event;
 import za.co.riggaroo.datecountdown.injection.CountdownFactory;
 import za.co.riggaroo.datecountdown.ui.event.add.AddEventActivity;
 
-public class EventListFragment extends LifecycleFragment {
+public class EventListFragment extends Fragment {
 
     private static final String TAG = "EventListFragment";
     private EventAdapter adapter;
@@ -46,7 +46,7 @@ public class EventListFragment extends LifecycleFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_events, container, false);
         setupRecyclerView(v);
-        FloatingActionButton floatingActionButton = (FloatingActionButton) v.findViewById(R.id.fab_add);
+        FloatingActionButton floatingActionButton = v.findViewById(R.id.fab_add);
         floatingActionButton.setOnClickListener(v1 -> startActivity(new Intent(getContext(), AddEventActivity.class)));
         CountdownApplication application = (CountdownApplication) getActivity().getApplication();
         eventListViewModel = ViewModelProviders.of(this, new CountdownFactory(application)).get(EventListViewModel.class);
@@ -60,7 +60,7 @@ public class EventListFragment extends LifecycleFragment {
     }
 
     private void setupRecyclerView(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_list_events);
+        RecyclerView recyclerView = v.findViewById(R.id.recycler_view_list_events);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 

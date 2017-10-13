@@ -5,6 +5,7 @@ import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import za.co.riggaroo.datecountdown.CountdownApplication;
 import za.co.riggaroo.datecountdown.R;
 import za.co.riggaroo.datecountdown.injection.CountdownFactory;
 
-public class AddEventFragment extends LifecycleFragment implements DatePickerDialog.OnDateSetListener {
+public class AddEventFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
 
     private EditText editTextTitle, editTextDescription;
