@@ -2,7 +2,10 @@ package za.co.riggaroo.datecountdown.injection;
 
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.support.AndroidSupportInjectionModule;
+import za.co.riggaroo.datecountdown.CountdownApplication;
 import za.co.riggaroo.datecountdown.ui.event.add.AddEventViewModel;
 import za.co.riggaroo.datecountdown.ui.event.list.EventListViewModel;
 
@@ -11,14 +14,22 @@ import za.co.riggaroo.datecountdown.ui.event.list.EventListViewModel;
  * @since 2017/05/11.
  */
 @Singleton
-@Component(modules = {CountdownModule.class})
+@Component(modules = {AndroidSupportInjectionModule.class,
+        CountdownModule.class,
+        ActivityBuildersModule.class
+        })
 public interface CountdownComponent {
 
-    void inject(EventListViewModel eventListViewModel);
+    void inject(CountdownApplication countdownApplication);
 
-    void inject(AddEventViewModel addEventViewModel);
 
-    interface Injectable {
-        void inject(CountdownComponent countdownComponent);
+    @Component.Builder
+    interface Builder {
+
+        @BindsInstance
+        Builder application(CountdownApplication application);
+
+        CountdownComponent build();
+
     }
 }

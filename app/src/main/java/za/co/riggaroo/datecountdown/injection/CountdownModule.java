@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.AndroidInjectionModule;
 import za.co.riggaroo.datecountdown.CountdownApplication;
 import za.co.riggaroo.datecountdown.db.EventDatabase;
 import za.co.riggaroo.datecountdown.repository.EventRepository;
@@ -16,19 +17,8 @@ import za.co.riggaroo.datecountdown.repository.EventRepositoryImpl;
  * @author rebeccafranks
  * @since 2017/05/11.
  */
-@Module
+@Module(includes = {AndroidInjectionModule.class, ViewModelModule.class})
 public class CountdownModule {
-
-    private CountdownApplication countdownApplication;
-
-    public CountdownModule(CountdownApplication countdownApplication) {
-        this.countdownApplication = countdownApplication;
-    }
-
-    @Provides
-    Context applicationContext() {
-        return countdownApplication;
-    }
 
     @Provides
     @Singleton
@@ -38,7 +28,7 @@ public class CountdownModule {
 
     @Provides
     @Singleton
-    EventDatabase providesEventDatabase(Context context) {
+    EventDatabase providesEventDatabase(CountdownApplication context) {
         return Room.databaseBuilder(context.getApplicationContext(), EventDatabase.class, "event_db").build();
     }
 }
