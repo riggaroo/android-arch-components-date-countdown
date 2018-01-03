@@ -1,18 +1,23 @@
 package za.co.riggaroo.datecountdown;
 
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import timber.log.Timber;
-import za.co.riggaroo.datecountdown.injection.CountdownComponent;
-import za.co.riggaroo.datecountdown.injection.CountdownModule;
-import za.co.riggaroo.datecountdown.injection.DaggerCountdownComponent;
+import za.co.riggaroo.datecountdown.injection.AppInjector;
 
-public class CountdownApplication extends Application {
+public class CountdownApplication extends Application implements HasActivityInjector {
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
-    private final CountdownComponent countDownComponent = createCountdownComponent();
 
     @Override
     public void onCreate() {
@@ -21,16 +26,12 @@ public class CountdownApplication extends Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());//TODO Install a Crashlytics tree in production
         }
+        AppInjector.init(this);
+
     }
 
-    protected CountdownComponent createCountdownComponent() {
-        return DaggerCountdownComponent.builder()
-                .countdownModule(new CountdownModule(this))
-                .build();
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
-
-    public CountdownComponent getCountDownComponent() {
-        return countDownComponent;
-    }
-
 }

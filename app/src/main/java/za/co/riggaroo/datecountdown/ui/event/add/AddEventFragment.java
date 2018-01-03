@@ -1,9 +1,9 @@
 package za.co.riggaroo.datecountdown.ui.event.add;
 
 import android.app.DatePickerDialog;
-import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -18,13 +18,17 @@ import android.widget.TextView;
 
 import org.threeten.bp.LocalDateTime;
 
-import za.co.riggaroo.datecountdown.CountdownApplication;
+import javax.inject.Inject;
+
 import za.co.riggaroo.datecountdown.R;
-import za.co.riggaroo.datecountdown.injection.CountdownFactory;
+import za.co.riggaroo.datecountdown.injection.CountdownViewModelFactory;
+import za.co.riggaroo.datecountdown.injection.Injectable;
 
-public class AddEventFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class AddEventFragment extends Fragment implements DatePickerDialog.OnDateSetListener, Injectable {
 
 
+    @Inject
+    CountdownViewModelFactory countdownViewModelFactory;
     private EditText editTextTitle, editTextDescription;
     private Button buttonAddEvent, buttonSetDate;
     private TextView textViewCurrentDate;
@@ -32,7 +36,7 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_event, container, false);
 
         setupViews(view);
@@ -42,8 +46,7 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
     }
 
     private void setupViewModel() {
-        CountdownApplication countdownApplication = (CountdownApplication) getActivity().getApplication();
-        addEventViewModel = ViewModelProviders.of(this, new CountdownFactory(countdownApplication))
+        addEventViewModel = ViewModelProviders.of(this, countdownViewModelFactory)
                 .get(AddEventViewModel.class);
         editTextTitle.setText(addEventViewModel.getEventName());
         editTextDescription.setText(addEventViewModel.getEventDescription());
@@ -97,11 +100,11 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
     }
 
     private void setupViews(View view) {
-        buttonAddEvent = (Button) view.findViewById(R.id.button_add);
-        editTextTitle = (EditText) view.findViewById(R.id.edit_text_title);
-        editTextDescription = (EditText) view.findViewById(R.id.edit_text_description);
-        buttonSetDate = (Button) view.findViewById(R.id.button_set_date);
-        textViewCurrentDate = (TextView) view.findViewById(R.id.text_view_date_set);
+        buttonAddEvent = view.findViewById(R.id.button_add);
+        editTextTitle = view.findViewById(R.id.edit_text_title);
+        editTextDescription = view.findViewById(R.id.edit_text_description);
+        buttonSetDate = view.findViewById(R.id.button_set_date);
+        textViewCurrentDate = view.findViewById(R.id.text_view_date_set);
     }
 
     @Override
