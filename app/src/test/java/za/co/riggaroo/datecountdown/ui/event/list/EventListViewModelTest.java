@@ -73,17 +73,6 @@ public class EventListViewModelTest {
         MutableLiveData<List<Event>> fakeEvents = getEventListMutableData();
         when(eventRepository.getEvents()).thenReturn(fakeEvents);
 
-        eventListViewModel.inject(new CountdownComponent() {
-            @Override
-            public void inject(EventListViewModel eventListViewModel) {
-                eventListViewModel.eventRepository = eventRepository;
-            }
-
-            @Override
-            public void inject(AddEventViewModel addEventViewModel) {
-
-            }
-        });
         List<Event> eventsReturned = getValue(eventListViewModel.getEvents());
 
         verify(eventRepository).getEvents();

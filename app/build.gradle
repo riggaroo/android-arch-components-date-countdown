@@ -64,7 +64,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:${arch_version}"
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.8.9'
+    testCompile 'org.mockito:mockito-core:2.10.0'
     testCompile("android.arch.core:core-testing:${arch_version}", {
         exclude group: 'com.android.support', module: 'support-compat'
         exclude group: 'com.android.support', module: 'support-annotations'
