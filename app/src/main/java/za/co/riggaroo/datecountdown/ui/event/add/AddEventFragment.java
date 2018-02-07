@@ -1,6 +1,7 @@
 package za.co.riggaroo.datecountdown.ui.event.add;
 
 import android.app.DatePickerDialog;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,7 +29,7 @@ public class AddEventFragment extends Fragment implements DatePickerDialog.OnDat
 
 
     @Inject
-    CountdownViewModelFactory countdownViewModelFactory;
+    ViewModelProvider.Factory countdownViewModelFactory;
     private EditText editTextTitle, editTextDescription;
     private Button buttonAddEvent, buttonSetDate;
     private TextView textViewCurrentDate;

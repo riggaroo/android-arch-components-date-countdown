@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="za.co.riggaroo.datecountdown">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application>
+        <activity android:name="za.co.riggaroo.datecountdown.SingleFragmentActivity">
+        </activity>
+    </application>
+
+</manifest>
