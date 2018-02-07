@@ -21,13 +21,11 @@ import za.co.riggaroo.datecountdown.repository.EventRepositoryImpl;
 public class CountdownModule {
 
     @Provides
-    @Singleton
     EventRepository providesEventRepository(EventDatabase eventDatabase) {
         return new EventRepositoryImpl(eventDatabase);
     }
 
     @Provides
-    @Singleton
     EventDatabase providesEventDatabase(CountdownApplication context) {
         return Room.databaseBuilder(context.getApplicationContext(), EventDatabase.class, "event_db").build();
     }

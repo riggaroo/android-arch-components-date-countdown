@@ -115,4 +115,5 @@ public class EventListViewModelTest {
         //noinspection unchecked
         return (T) data[0];
     }
+
 }

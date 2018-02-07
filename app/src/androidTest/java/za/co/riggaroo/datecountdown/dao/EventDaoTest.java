@@ -1,12 +1,11 @@
 package za.co.riggaroo.datecountdown.dao;
 
-import android.app.Instrumentation;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
+import android.arch.persistence.room.Room;
 import android.support.annotation.Nullable;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,15 +15,8 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import dagger.Component;
-import za.co.riggaroo.datecountdown.MockCountDownApplication;
 import za.co.riggaroo.datecountdown.db.EventDatabase;
 import za.co.riggaroo.datecountdown.entity.Event;
-import za.co.riggaroo.datecountdown.injection.CountdownComponent;
-import za.co.riggaroo.datecountdown.injection.MockCountdownModule;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -33,26 +25,17 @@ import static junit.framework.Assert.assertEquals;
  * @since 2017/04/21.
  */
 @RunWith(AndroidJUnit4.class)
-public class EventDaoTest {
+public class EventDaoTest  {
 
     EventDao eventDao;
 
-    @Inject
-    EventDatabase eventDatabase;
 
-    @Singleton
-    @Component(modules = {MockCountdownModule.class})
-    public interface MockCountdownComponent extends CountdownComponent {
-        void inject(EventDaoTest eventDaoTest);
-    }
+    EventDatabase eventDatabase;
 
     @Before
     public void setup() {
-        Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
-        MockCountDownApplication app
-                = (MockCountDownApplication) instrumentation.getTargetContext().getApplicationContext();
-        MockCountdownComponent component = (MockCountdownComponent) app.getCountDownComponent();
-        component.inject(this);
+        eventDatabase = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
+                EventDatabase.class).build();
 
         eventDao = eventDatabase.eventDao();
     }

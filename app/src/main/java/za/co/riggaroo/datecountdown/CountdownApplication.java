@@ -15,6 +15,7 @@ import timber.log.Timber;
 import za.co.riggaroo.datecountdown.injection.AppInjector;
 
 public class CountdownApplication extends Application implements HasActivityInjector {
+
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
