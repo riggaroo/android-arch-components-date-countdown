@@ -20,7 +20,7 @@
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_black_24dp"
+        app:src="@drawable/ic_add_black_24dp"
         app:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginRight="16dp"
