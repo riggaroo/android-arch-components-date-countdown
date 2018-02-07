@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "za.co.riggaroo.datecountdown.util.CountdownTestRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
