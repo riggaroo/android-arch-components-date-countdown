@@ -25,7 +25,7 @@ android {
 }
 
 ext {
-    arch_version = '1.0.0'
+    arch_version = '1.1.0'
     support_library_version = '27.0.2'
     dagger_version = "2.13"
     espresso_version = '2.2.2'
@@ -49,7 +49,7 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
 
     compile "android.arch.lifecycle:extensions:${arch_version}"
-    compile "android.arch.persistence.room:runtime:${arch_version}"
+    compile "android.arch.persistence.room:runtime:1.1.0-alpha1"
 
     implementation "com.google.dagger:dagger:${dagger_version}"
     implementation "com.google.dagger:dagger-android:${dagger_version}"
@@ -61,7 +61,7 @@ dependencies {
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
 
     annotationProcessor "android.arch.lifecycle:compiler:${arch_version}"
-    annotationProcessor "android.arch.persistence.room:compiler:${arch_version}"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.0-alpha1"
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.10.0'

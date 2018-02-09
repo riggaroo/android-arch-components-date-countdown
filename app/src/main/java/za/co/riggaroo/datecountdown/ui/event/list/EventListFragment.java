@@ -53,13 +53,16 @@ public class EventListFragment extends Fragment implements Injectable {
         FloatingActionButton floatingActionButton = v.findViewById(R.id.fab_add);
         floatingActionButton.setOnClickListener(v1 -> startActivity(new Intent(getContext(), AddEventActivity.class)));
         eventListViewModel = ViewModelProviders.of(this, countdownViewModelFactory).get(EventListViewModel.class);
+        return v;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         eventListViewModel.getEvents().observe(this, events -> {
             Log.d(TAG, "Events Changed:" + events);
             adapter.setItems(events);
         });
-
-        return v;
     }
 
     private void setupRecyclerView(View v) {
