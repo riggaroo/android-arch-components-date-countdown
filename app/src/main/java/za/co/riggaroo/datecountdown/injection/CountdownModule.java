@@ -22,7 +22,7 @@ public class CountdownModule {
 
     @Provides
     EventRepository providesEventRepository(EventDatabase eventDatabase) {
-        return new EventRepositoryImpl(eventDatabase);
+        return new EventRepositoryImpl(eventDatabase.eventDao());
     }
 
     @Provides

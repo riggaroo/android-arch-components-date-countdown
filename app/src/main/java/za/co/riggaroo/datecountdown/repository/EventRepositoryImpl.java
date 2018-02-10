@@ -9,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import za.co.riggaroo.datecountdown.dao.EventDao;
 import za.co.riggaroo.datecountdown.db.EventDatabase;
 import za.co.riggaroo.datecountdown.entity.Event;
 
@@ -19,27 +20,33 @@ import za.co.riggaroo.datecountdown.entity.Event;
 public class EventRepositoryImpl implements EventRepository {
 
     @Inject
-    EventDatabase eventDatabase;
+    EventDao eventDao;
 
-    public EventRepositoryImpl(EventDatabase eventDatabase) {
-        this.eventDatabase = eventDatabase;
+    public EventRepositoryImpl(EventDao eventDao) {
+        this.eventDao = eventDao;
     }
 
     @Override
     public Completable addEvent(Event event) {
-        return Completable.fromAction(() -> eventDatabase.eventDao().addEvent(event));
+        if (event == null){
+            return Completable.error(new IllegalArgumentException("Event cannot be null"));
+        }
+        return Completable.fromAction(() -> eventDao.addEvent(event));
     }
 
     @Override
     public LiveData<List<Event>> getEvents() {
         //Here is where we would do more complex logic, like getting events from a cache
         //then inserting into the database etc. In this example we just go straight to the dao.
-        return eventDatabase.eventDao().getEvents(LocalDateTime.now());
+        return eventDao.getEvents(LocalDateTime.now());
     }
 
     @Override
     public Completable deleteEvent(Event event) {
-        return Completable.fromAction(() -> eventDatabase.eventDao().deleteEvent(event));
+        if (event == null){
+            return Completable.error(new IllegalArgumentException("Event cannot be null"));
+        }
+        return Completable.fromAction(() -> eventDao.deleteEvent(event));
     }
 
 

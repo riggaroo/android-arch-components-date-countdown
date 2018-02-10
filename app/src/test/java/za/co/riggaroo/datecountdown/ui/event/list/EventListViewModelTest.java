@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Completable;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
+import za.co.riggaroo.datecountdown.FakeEventDataGenerator;
+import za.co.riggaroo.datecountdown.LiveDataUtils;
 import za.co.riggaroo.datecountdown.entity.Event;
 import za.co.riggaroo.datecountdown.injection.CountdownComponent;
 import za.co.riggaroo.datecountdown.repository.EventRepository;
@@ -70,50 +72,27 @@ public class EventListViewModelTest {
 
     @Test
     public void getEvents() throws InterruptedException {
-        MutableLiveData<List<Event>> fakeEvents = getEventListMutableData();
+        MutableLiveData<List<Event>> fakeEvents = FakeEventDataGenerator.getEventListMutableData();
         when(eventRepository.getEvents()).thenReturn(fakeEvents);
 
-        List<Event> eventsReturned = getValue(eventListViewModel.getEvents());
+        List<Event> eventsReturned = LiveDataUtils.getValue(eventListViewModel.getEvents());
 
         verify(eventRepository).getEvents();
         assertEquals(1, eventsReturned.size());
         assertEquals("Name", eventsReturned.get(0).getName());
     }
 
-    @NonNull
-    private MutableLiveData<List<Event>> getEventListMutableData() {
-        List<Event> events = new ArrayList<>();
-        Event event = new Event(1, "Name", "Desc", LocalDateTime.now());
-        events.add(event);
-        MutableLiveData<List<Event>> fakeEvents = new MutableLiveData<>();
-        fakeEvents.setValue(events);
-        return fakeEvents;
-    }
+
 
     @Test
     public void deleteEvent() {
         when(eventRepository.deleteEvent(any())).thenReturn(Completable.complete());
 
-        eventListViewModel.deleteEvent(new Event(1, "Name", "Description", LocalDateTime.now()));
+        eventListViewModel.deleteEvent(FakeEventDataGenerator.getFakeEvent());
 
         verify(eventRepository).deleteEvent(any());
     }
 
-    public static <T> T getValue(LiveData<T> liveData) throws InterruptedException {
-        final Object[] data = new Object[1];
-        CountDownLatch latch = new CountDownLatch(1);
-        Observer<T> observer = new Observer<T>() {
-            @Override
-            public void onChanged(@Nullable T o) {
-                data[0] = o;
-                latch.countDown();
-                liveData.removeObserver(this);
-            }
-        };
-        liveData.observeForever(observer);
-        latch.await(2, TimeUnit.SECONDS);
-        //noinspection unchecked
-        return (T) data[0];
-    }
+
 
 }
