@@ -12,13 +12,13 @@ public class DateTypeConverterTest {
     public void convertDateToLong(){
         LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(1486728000L, 0, ZoneOffset.UTC);
 
-        long timestamp = DateTypeConverter.toTimestamp(localDateTime);
+        long timestamp = DateTypeConverter.INSTANCE.toTimestamp(localDateTime);
 
         assertEquals(1486728000L, timestamp);
     }
     @Test
     public void convertDateToLong_DateNull_ReturnsNull(){
-        Long timestamp = DateTypeConverter.toTimestamp(null);
+        Long timestamp = DateTypeConverter.INSTANCE.toTimestamp(null);
 
         assertNull(timestamp);
     }
@@ -26,13 +26,13 @@ public class DateTypeConverterTest {
     @Test
     public void convertLongToDate(){
         long timestamp = 1486728000L;
-        LocalDateTime dateTime = DateTypeConverter.toDate(timestamp);
+        LocalDateTime dateTime = DateTypeConverter.INSTANCE.toDate(timestamp);
 
         assertEquals(LocalDateTime.ofEpochSecond(1486728000L, 0, ZoneOffset.UTC), dateTime);
     }
     @Test
     public void convertLongToDate_LongNull_ReturnsNull(){
-        LocalDateTime localDateTime = DateTypeConverter.toDate(null);
+        LocalDateTime localDateTime = DateTypeConverter.INSTANCE.toDate(null);
 
         assertNull(localDateTime);
     }

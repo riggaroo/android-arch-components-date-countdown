@@ -45,7 +45,7 @@ public class AddEventViewModelTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         addEventViewModel = new AddEventViewModel();
-        addEventViewModel.eventRepository = eventRepository;
+        addEventViewModel.setEventRepository(eventRepository);
     }
 
     @AfterClass

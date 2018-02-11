@@ -51,7 +51,7 @@ public class EventListViewModelTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         eventListViewModel = new EventListViewModel();
-        eventListViewModel.eventRepository = eventRepository;
+        eventListViewModel.setEventRepository(eventRepository);
 
     }
 
