@@ -8,7 +8,7 @@ import android.arch.persistence.room.TypeConverters
 import za.co.riggaroo.datecountdown.data.dao.EventDao
 import za.co.riggaroo.datecountdown.data.entity.Event
 
-@Database(entities = arrayOf(Event::class), version = 2)
+@Database(entities = [(Event::class)], version = 2)
 @TypeConverters(DateTypeConverter::class)
 abstract class EventDatabase : RoomDatabase() {
 

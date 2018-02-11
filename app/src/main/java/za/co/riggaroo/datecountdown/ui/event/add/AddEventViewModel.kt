@@ -27,6 +27,10 @@ class AddEventViewModel @Inject constructor(var eventRepository: EventRepository
     }
 
     fun addEvent() {
+        if (eventName == null || eventDescription == null || eventDateTime == null){
+            //TODO inform UI about issue with field
+            return
+        }
         val event = Event(0, eventName!!, eventDescription!!, eventDateTime!!)
         eventRepository.addEvent(event).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

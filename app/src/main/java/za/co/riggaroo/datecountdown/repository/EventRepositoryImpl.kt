@@ -1,20 +1,18 @@
 package za.co.riggaroo.datecountdown.repository
 
 import android.arch.lifecycle.LiveData
-
-import org.threeten.bp.LocalDateTime
-
-import javax.inject.Inject
-
 import io.reactivex.Completable
+import org.threeten.bp.LocalDateTime
 import za.co.riggaroo.datecountdown.data.dao.EventDao
 import za.co.riggaroo.datecountdown.data.entity.Event
+import javax.inject.Inject
 
 /**
  * @author rebeccafranks
  * @since 2017/04/21.
  */
-class EventRepositoryImpl @Inject constructor(val eventDao: EventDao) : EventRepository {
+class EventRepositoryImpl
+@Inject constructor(val eventDao: EventDao) : EventRepository {
 
     override fun addEvent(event: Event?): Completable {
         return if (event == null) {
