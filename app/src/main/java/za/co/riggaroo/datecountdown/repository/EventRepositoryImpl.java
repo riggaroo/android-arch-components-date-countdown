@@ -9,9 +9,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
-import za.co.riggaroo.datecountdown.dao.EventDao;
-import za.co.riggaroo.datecountdown.db.EventDatabase;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.dao.EventDao;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 /**
  * @author rebeccafranks

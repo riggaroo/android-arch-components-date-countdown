@@ -1,4 +1,4 @@
-package za.co.riggaroo.datecountdown.entity;
+package za.co.riggaroo.datecountdown.data.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.temporal.ChronoUnit;
 
-import static za.co.riggaroo.datecountdown.entity.Event.TABLE_NAME;
+import static za.co.riggaroo.datecountdown.data.entity.Event.TABLE_NAME;
 
 @Entity(tableName = TABLE_NAME)
 public class Event {

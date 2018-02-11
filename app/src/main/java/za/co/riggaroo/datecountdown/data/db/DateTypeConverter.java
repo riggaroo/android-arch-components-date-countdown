@@ -1,4 +1,4 @@
-package za.co.riggaroo.datecountdown.db;
+package za.co.riggaroo.datecountdown.data.db;
 
 
 import android.arch.persistence.room.TypeConverter;

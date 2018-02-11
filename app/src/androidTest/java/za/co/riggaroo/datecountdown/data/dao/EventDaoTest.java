@@ -1,4 +1,4 @@
-package za.co.riggaroo.datecountdown.dao;
+package za.co.riggaroo.datecountdown.data.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import za.co.riggaroo.datecountdown.db.EventDatabase;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.db.EventDatabase;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 import static junit.framework.Assert.assertEquals;
 

@@ -1,7 +1,6 @@
 package za.co.riggaroo.datecountdown.repository;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import org.junit.Before;
@@ -9,15 +8,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.threeten.bp.LocalDateTime;
 
 import java.util.List;
 
 import za.co.riggaroo.datecountdown.FakeEventDataGenerator;
 import za.co.riggaroo.datecountdown.LiveDataUtils;
-import za.co.riggaroo.datecountdown.dao.EventDao;
-import za.co.riggaroo.datecountdown.db.EventDatabase;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.dao.EventDao;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;

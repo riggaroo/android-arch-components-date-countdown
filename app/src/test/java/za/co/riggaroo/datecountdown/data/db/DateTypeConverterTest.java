@@ -1,4 +1,4 @@
-package za.co.riggaroo.datecountdown.db;
+package za.co.riggaroo.datecountdown.data.db;
 
 import org.junit.Test;
 import org.threeten.bp.LocalDateTime;

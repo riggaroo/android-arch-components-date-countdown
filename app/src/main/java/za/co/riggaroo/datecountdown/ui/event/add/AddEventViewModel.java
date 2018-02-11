@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 import za.co.riggaroo.datecountdown.repository.EventRepository;
 
 

@@ -8,7 +8,7 @@ import org.threeten.bp.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 public class FakeEventDataGenerator {
 

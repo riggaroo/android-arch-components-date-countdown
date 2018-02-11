@@ -1,4 +1,4 @@
-package za.co.riggaroo.datecountdown.dao;
+package za.co.riggaroo.datecountdown.data.dao;
 
 
 import android.arch.lifecycle.LiveData;
@@ -13,7 +13,7 @@ import org.threeten.bp.LocalDateTime;
 
 import java.util.List;
 
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 

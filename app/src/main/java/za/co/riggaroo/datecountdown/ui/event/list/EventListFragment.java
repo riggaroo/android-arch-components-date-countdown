@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import za.co.riggaroo.datecountdown.R;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 import za.co.riggaroo.datecountdown.injection.CountdownViewModelFactory;
 import za.co.riggaroo.datecountdown.injection.Injectable;
 import za.co.riggaroo.datecountdown.ui.event.add.AddEventActivity;

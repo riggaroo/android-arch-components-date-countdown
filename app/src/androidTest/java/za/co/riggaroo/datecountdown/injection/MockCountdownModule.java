@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import za.co.riggaroo.datecountdown.CountdownApplication;
-import za.co.riggaroo.datecountdown.db.EventDatabase;
+import za.co.riggaroo.datecountdown.data.db.EventDatabase;
 import za.co.riggaroo.datecountdown.repository.EventRepository;
 import za.co.riggaroo.datecountdown.repository.EventRepositoryImpl;
 

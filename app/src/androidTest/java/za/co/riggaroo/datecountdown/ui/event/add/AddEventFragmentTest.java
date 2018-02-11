@@ -1,7 +1,6 @@
 package za.co.riggaroo.datecountdown.ui.event.add;
 
 
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 

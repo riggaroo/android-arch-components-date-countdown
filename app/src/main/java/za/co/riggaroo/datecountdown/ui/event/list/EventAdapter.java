@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import za.co.riggaroo.datecountdown.R;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
     private final Context context;

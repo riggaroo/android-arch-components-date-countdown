@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 import io.reactivex.Completable;
-import za.co.riggaroo.datecountdown.entity.Event;
+import za.co.riggaroo.datecountdown.data.entity.Event;
 
 /**
  * @author rebeccafranks
