@@ -36,8 +36,6 @@ class EventListViewModelTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
         eventListViewModel = EventListViewModel(eventRepository)
-        eventListViewModel.eventRepository = eventRepository
-
     }
 
     @Test
@@ -48,7 +46,7 @@ class EventListViewModelTest {
 
         val eventsReturned = LiveDataUtils.getValue(eventListViewModel.events)
 
-        verify<EventRepository>(eventRepository).getEvents()
+        verify(eventRepository).getEvents()
         assertEquals(1, eventsReturned.size)
         assertEquals("Name", eventsReturned[0].name)
     }
@@ -56,15 +54,14 @@ class EventListViewModelTest {
 
     @Test
     fun deleteEvent() {
-        `when`(eventRepository.deleteEvent(any<Event>())).thenReturn(Completable.complete())
+        `when`(eventRepository.deleteEvent(any())).thenReturn(Completable.complete())
 
         eventListViewModel.deleteEvent(FakeEventDataGenerator.getFakeEvent())
 
-        verify<EventRepository>(eventRepository).deleteEvent(any<Event>())
+        verify(eventRepository).deleteEvent(any())
     }
 
     companion object {
-
 
         @BeforeClass
         @JvmStatic
@@ -78,6 +75,4 @@ class EventListViewModelTest {
             RxAndroidPlugins.reset()
         }
     }
-
-
 }

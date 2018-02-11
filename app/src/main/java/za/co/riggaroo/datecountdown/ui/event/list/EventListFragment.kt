@@ -1,6 +1,7 @@
 package za.co.riggaroo.datecountdown.ui.event.list
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
@@ -26,17 +27,17 @@ import za.co.riggaroo.datecountdown.ui.event.add.AddEventActivity
 
 class EventListFragment : Fragment(), Injectable {
     @Inject
-    lateinit var countdownViewModelFactory: CountdownViewModelFactory
+    lateinit var countdownViewModelFactory: ViewModelProvider.Factory
 
     private lateinit var adapter: EventAdapter
     private lateinit var eventListViewModel: EventListViewModel
     private val deleteClickListener = View.OnClickListener { v : View ->
-        val event = v.getTag() as Event
+        val event = v.tag as Event
         eventListViewModel.deleteEvent(event)
     }
 
     private val itemClickListener = View.OnClickListener { v : View ->
-        val event = v.getTag() as Event
+        val event = v.tag as Event
 
         Toast.makeText(context, "Clicked:" + event.name, Toast.LENGTH_LONG).show()
     }
