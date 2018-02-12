@@ -85,28 +85,32 @@ dependencies {
     }
     testCompile  "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}"
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
-    androidTestCompile("android.arch.core:core-testing:${arch_version}", {
+    androidTestImplementation("android.arch.core:core-testing:${arch_version}", {
         exclude group: 'com.android.support', module: 'support-compat'
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-core-utils'
     })
 
-    androidTestCompile ('org.mockito:mockito-core:2.7.19') { exclude group: 'net.bytebuddy' }
-    androidTestCompile "com.linkedin.dexmaker:dexmaker-mockito:2.2.0"
-    androidTestCompile("com.android.support.test:runner:${runner_version}") {
+    androidTestImplementation ('org.mockito:mockito-core:2.7.19') { exclude group: 'net.bytebuddy' }
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.2.0"
+    androidTestImplementation("com.android.support.test:runner:${runner_version}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile("com.android.support.test:rules:${runner_version}") {
+    androidTestImplementation("com.android.support.test:rules:${runner_version}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile("com.android.support.test.espresso:espresso-core:${espresso_version}") {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${espresso_version}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile("com.android.support.test.espresso:espresso-intents:${espresso_version}") {
+    androidTestImplementation("com.android.support.test.espresso:espresso-intents:${espresso_version}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.4'
-    androidTestCompile 'com.github.fabioCollini.daggermock:daggermock:0.8.4'
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:${espresso_version}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.4'
+    androidTestImplementation 'com.github.fabioCollini.daggermock:daggermock:0.8.4'
+    androidTestImplementation 'com.squareup.rx.idler:rx2-idler:0.9.0'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

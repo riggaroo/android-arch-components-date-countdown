@@ -44,7 +44,7 @@ class EventListViewModelTest {
         val fakeEvents = FakeEventDataGenerator.getEventListMutableData()
         `when`(eventRepository.getEvents()).thenReturn(fakeEvents)
 
-        val eventsReturned = LiveDataUtils.getValue(eventListViewModel.events)
+        val eventsReturned = LiveDataUtils.getValue(eventListViewModel.getEvents())
 
         verify(eventRepository).getEvents()
         assertEquals(1, eventsReturned.size)

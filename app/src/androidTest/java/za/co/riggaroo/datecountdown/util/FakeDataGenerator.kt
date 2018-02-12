@@ -9,7 +9,7 @@ object FakeEventDataGenerator {
 
     fun getEventListMutableData(): MutableLiveData<List<Event>> {
         val events = ArrayList<Event>()
-        val event = Event(1, "Kate's Wedding", "Dress fancy", LocalDateTime.now().plusDays(3))
+        val event = getFakePartyEvent()
         events.add(event)
         val event2 = Event(1, "Rebecca's Birthday", "Bring Cake", LocalDateTime.now().plusDays(10))
         events.add(event2)
@@ -18,6 +18,9 @@ object FakeEventDataGenerator {
         return fakeEvents
     }
 
+    fun getFakePartyEvent() : Event {
+        return  Event(1, "A party", "Dress fancy", LocalDateTime.now().plusDays(3))
+    }
     fun getFakeEvent(): Event {
         return Event(1, "Birthday", "Desc", LocalDateTime.now())
     }
