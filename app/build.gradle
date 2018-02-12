@@ -65,7 +65,7 @@ dependencies {
 
     kapt "com.google.dagger:dagger-compiler:${dagger_version}"
     kapt "com.google.dagger:dagger-android-processor:${dagger_version}"
-    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:${dagger_version}"
 
     kapt "android.arch.lifecycle:compiler:${arch_version}"
     kapt "android.arch.persistence.room:compiler:1.1.0-alpha1"
@@ -102,6 +102,12 @@ dependencies {
     androidTestCompile("com.android.support.test.espresso:espresso-core:${espresso_version}") {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    androidTestCompile("com.android.support.test.espresso:espresso-intents:${espresso_version}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.4'
+    androidTestCompile 'com.github.fabioCollini.daggermock:daggermock:0.8.4'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

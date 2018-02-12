@@ -14,14 +14,18 @@ import za.co.riggaroo.datecountdown.ui.event.list.EventListViewModel
  * @since 2017/05/11.
  */
 @Singleton
-@Component(modules = [(AndroidSupportInjectionModule::class), (CountdownModule::class), (ActivityBuildersModule::class)])
+@Component(modules = [(AndroidSupportInjectionModule::class),
+    (CountdownModule::class),
+    (ActivityBuildersModule::class)])
 interface CountdownComponent {
 
     fun inject(countdownApplication: CountdownApplication)
 
-
     @Component.Builder
     interface Builder {
+
+        fun countdownModule(countdownModule: CountdownModule): Builder
+
 
         @BindsInstance
         fun application(application: CountdownApplication): Builder

@@ -13,8 +13,9 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import timber.log.Timber
 import za.co.riggaroo.datecountdown.injection.AppInjector
+import za.co.riggaroo.datecountdown.injection.DaggerCountdownComponent
 
-class CountdownApplication : Application(), HasActivityInjector {
+open class CountdownApplication : Application(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
@@ -25,10 +26,14 @@ class CountdownApplication : Application(), HasActivityInjector {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())//TODO Install a Crashlytics tree in production
         }
-        AppInjector.init(this)
-
+        initializeApplication()
     }
 
+    open fun initializeApplication() {
+        DaggerCountdownComponent.builder().application(this)
+                .build().inject(this)
+        AppInjector.init(this)
+    }
     override fun activityInjector(): AndroidInjector<Activity> {
         return dispatchingAndroidInjector
     }

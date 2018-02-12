@@ -21,8 +21,6 @@ import za.co.riggaroo.datecountdown.CountdownApplication
 object AppInjector {
 
     fun init(countdownApplication: CountdownApplication) {
-        DaggerCountdownComponent.builder().application(countdownApplication)
-                .build().inject(countdownApplication)
         countdownApplication
                 .registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
                     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

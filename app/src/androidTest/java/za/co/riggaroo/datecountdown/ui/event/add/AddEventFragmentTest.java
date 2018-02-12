@@ -42,7 +42,7 @@ public class AddEventFragmentTest {
         addEventViewModel = mock(AddEventViewModel.class);
         AddEventFragment addEventFragment = new AddEventFragment();
 
-        addEventFragment.setCountdownViewModelFactory(ViewModelUtil.createFor(addEventViewModel));
+        addEventFragment.setCountdownViewModelFactory(ViewModelUtil.INSTANCE.createFor(addEventViewModel));
         activityTestRule.getActivity().setFragment(addEventFragment);
     }
 

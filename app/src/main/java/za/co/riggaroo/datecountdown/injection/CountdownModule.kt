@@ -19,25 +19,22 @@ import za.co.riggaroo.datecountdown.repository.EventRepositoryImpl
  * @since 2017/05/11.
  */
 @Module(includes = [(AndroidInjectionModule::class), (ViewModelModule::class)])
-class CountdownModule {
+open class CountdownModule {
 
     @Provides
-    fun providesEventRepository(eventDao: EventDao): EventRepository {
-        Log.d("CountdownModule", "providesEventRepository:" + eventDao)
+    open fun providesEventRepository(eventDao: EventDao): EventRepository {
         return EventRepositoryImpl(eventDao)
     }
 
     @Provides
     @Singleton
-    fun providesEventDao(eventDatabase: EventDatabase): EventDao {
-        Log.d("CountdownModule", "providesEventDao:" + eventDatabase)
+    open fun providesEventDao(eventDatabase: EventDatabase): EventDao {
         return eventDatabase.eventDao()
     }
 
     @Provides
     @Singleton
-    fun providesEventDatabase(context: CountdownApplication): EventDatabase {
-        Log.d("CountdownModule", "providesEventDatabase")
+    open fun providesEventDatabase(context: CountdownApplication): EventDatabase {
         return Room.databaseBuilder(context.applicationContext, EventDatabase::class.java, "event_db")
                 .fallbackToDestructiveMigration()
                 .build()

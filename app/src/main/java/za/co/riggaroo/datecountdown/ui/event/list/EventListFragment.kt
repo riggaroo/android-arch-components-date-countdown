@@ -49,12 +49,6 @@ class EventListFragment : Fragment(), Injectable {
         setupRecyclerView(v)
         val floatingActionButton = v.findViewById<FloatingActionButton>(R.id.fab_add)
         floatingActionButton.setOnClickListener { startActivity(Intent(context, AddEventActivity::class.java)) }
-
-        return v
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         eventListViewModel = ViewModelProviders.of(this, countdownViewModelFactory)
                 .get(EventListViewModel::class.java)
 
@@ -65,6 +59,7 @@ class EventListFragment : Fragment(), Injectable {
                 adapter.setItems(events)
             }
         })
+        return v
     }
 
     private fun setupRecyclerView(v: View) {
