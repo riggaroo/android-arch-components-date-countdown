@@ -14,10 +14,11 @@ import timber.log.Timber
 import za.co.riggaroo.datecountdown.data.entity.Event
 import za.co.riggaroo.datecountdown.repository.EventRepository
 
-class EventListViewModel @Inject constructor(var eventRepository: EventRepository) : ViewModel() {
+open class EventListViewModel @Inject constructor(var eventRepository: EventRepository) : ViewModel() {
 
-    val events: LiveData<List<Event>>
-        get() = eventRepository.getEvents()
+    fun getEvents() : LiveData<List<Event>>{
+        return eventRepository.getEvents()
+    }
 
     fun deleteEvent(event: Event) {
         eventRepository.deleteEvent(event)

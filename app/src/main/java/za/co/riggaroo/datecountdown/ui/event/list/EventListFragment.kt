@@ -26,6 +26,7 @@ import za.co.riggaroo.datecountdown.ui.event.add.AddEventActivity
 
 
 class EventListFragment : Fragment(), Injectable {
+
     @Inject
     lateinit var countdownViewModelFactory: ViewModelProvider.Factory
 
@@ -49,18 +50,22 @@ class EventListFragment : Fragment(), Injectable {
         val floatingActionButton = v.findViewById<FloatingActionButton>(R.id.fab_add)
         floatingActionButton.setOnClickListener { startActivity(Intent(context, AddEventActivity::class.java)) }
 
-        eventListViewModel = ViewModelProviders.of(this, countdownViewModelFactory).get(EventListViewModel::class.java)
+        return v
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        eventListViewModel = ViewModelProviders.of(this, countdownViewModelFactory)
+                .get(EventListViewModel::class.java)
 
 
-        eventListViewModel.events.observe(this, Observer<List<Event>> { events ->
+        eventListViewModel.getEvents().observe(this, Observer<List<Event>> { events ->
             Log.d(TAG, "Events Changed:" + events)
             events?.let {
                 adapter.setItems(events)
             }
         })
-        return v
     }
-
 
     private fun setupRecyclerView(v: View) {
         val recyclerView = v.findViewById<RecyclerView>(R.id.recycler_view_list_events)

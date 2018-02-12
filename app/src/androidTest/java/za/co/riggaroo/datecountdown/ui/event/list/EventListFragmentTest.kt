@@ -35,15 +35,19 @@ class EventListFragmentTest {
     @JvmField
     @Rule
     var activityTestRule = ActivityTestRule(SingleFragmentActivity::class.java, true, true)
+
     @JvmField
     @Rule
     var executorRule = TaskExecutorWithIdlingResourceRule()
 
 
+    @Mock
     private lateinit var eventListViewModel: EventListViewModel
+
     @Before
     fun setup() {
-        eventListViewModel = mock(EventListViewModel::class.java)
+        //eventListViewModel = mock(EventListViewModel::class.java)
+        MockitoAnnotations.initMocks(this);
         val eventListFragment = EventListFragment()
 
         eventListFragment.countdownViewModelFactory = ViewModelUtil.createFor<EventListViewModel>(eventListViewModel)
@@ -52,11 +56,20 @@ class EventListFragmentTest {
 
 
     @Test
-    fun addEvent() {
-        `when`(eventListViewModel.events).thenReturn(FakeEventDataGenerator.getEventListMutableData())
+    fun deleteEvent() {
+       `when`(eventListViewModel.getEvents()).thenReturn(FakeEventDataGenerator.getEventListMutableData())
 
         onView(withId(R.id.button_delete)).perform(click())
 
         verify(eventListViewModel).deleteEvent(ArgumentMatchers.any())
+    }
+
+    @Test
+    fun listEvents(){
+      /*  `when`(eventListViewModel.events).thenReturn(FakeEventDataGenerator.getEventListMutableData())
+
+        onView(withId(R.id.button_delete)).perform(click())
+
+        verify(eventListViewModel).deleteEvent(ArgumentMatchers.any())*/
     }
 }
