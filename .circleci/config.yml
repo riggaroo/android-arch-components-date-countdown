@@ -23,8 +23,26 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew build lint test
+      - run:
+          name: Run UI Tests
+          command: ./
       - store_artifacts:
           path: app/build/outputs
           destination: outputs
       - store_test_results:
           path: app/build/test-results
+
+  test:
+    override:
+      # start the emulator
+      - emulator -avd circleci-android24 -no-window:
+          background: true
+          parallel: true
+      # wait for it to have booted
+      - circle-android wait-for-boot
+      # run tests  against the emulator.
+      - ./gradlew connectedAndroidTest
+      # copy the build outputs to artifacts
+      - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+      # copy the test results to the test results directory.
+      - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
