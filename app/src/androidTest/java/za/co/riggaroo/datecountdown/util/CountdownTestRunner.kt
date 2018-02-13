@@ -3,11 +3,9 @@ package za.co.riggaroo.datecountdown.util
 import android.app.Application
 import android.content.Context
 import android.support.test.runner.AndroidJUnitRunner
-
-import za.co.riggaroo.datecountdown.CountdownApplication
 import com.squareup.rx2.idler.Rx2Idler
 import io.reactivex.plugins.RxJavaPlugins
-
+import za.co.riggaroo.datecountdown.CountdownApplication
 
 
 class CountdownTestRunner : AndroidJUnitRunner() {

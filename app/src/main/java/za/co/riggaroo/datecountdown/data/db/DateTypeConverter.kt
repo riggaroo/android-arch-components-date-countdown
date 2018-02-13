@@ -10,13 +10,13 @@ class DateTypeConverter {
 
 
     @TypeConverter
-    public fun toDate(timestamp: Long?): LocalDateTime? {
+    fun toDate(timestamp: Long?): LocalDateTime? {
         return if (timestamp == null) null else LocalDateTime.ofEpochSecond(timestamp, 0, ZoneOffset.ofTotalSeconds(0))
     }
 
 
     @TypeConverter
-    public fun toTimestamp(date: LocalDateTime?): Long? {
+    fun toTimestamp(date: LocalDateTime?): Long? {
         return date?.toInstant(ZoneOffset.ofTotalSeconds(0))?.epochSecond
     }
 }

@@ -3,7 +3,7 @@ package za.co.riggaroo.datecountdown.util
 import android.arch.lifecycle.MutableLiveData
 import org.threeten.bp.LocalDateTime
 import za.co.riggaroo.datecountdown.data.entity.Event
-import java.util.ArrayList
+import java.util.*
 
 object FakeEventDataGenerator {
 
@@ -18,9 +18,10 @@ object FakeEventDataGenerator {
         return fakeEvents
     }
 
-    fun getFakePartyEvent() : Event {
-        return  Event(1, "A party", "Dress fancy", LocalDateTime.now().plusDays(3))
+    fun getFakePartyEvent(): Event {
+        return Event(1, "A party", "Dress fancy", LocalDateTime.now().plusDays(3))
     }
+
     fun getFakeEvent(): Event {
         return Event(1, "Birthday", "Desc", LocalDateTime.now())
     }

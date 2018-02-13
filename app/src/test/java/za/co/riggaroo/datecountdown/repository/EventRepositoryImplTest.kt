@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations
 import za.co.riggaroo.datecountdown.FakeEventDataGenerator
 import za.co.riggaroo.datecountdown.LiveDataUtils
 import za.co.riggaroo.datecountdown.data.dao.EventDao
+import za.co.riggaroo.datecountdown.utils.any
 
 class EventRepositoryImplTest {
 
@@ -75,11 +76,4 @@ class EventRepositoryImplTest {
                 .assertError(IllegalArgumentException::class.java)
     }
 
-
-    private fun <T> any(): T {
-        Mockito.any<T>()
-        return uninitialized()
-    }
-
-    private fun <T> uninitialized(): T = null as T
 }

@@ -4,8 +4,6 @@ import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
 import android.view.View
 import org.hamcrest.Matcher
-import org.mockito.Mockito
-
 
 
 fun clickChildViewWithId(id: Int): ViewAction {

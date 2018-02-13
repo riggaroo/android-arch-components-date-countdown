@@ -5,17 +5,15 @@ import android.arch.lifecycle.Observer
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.threeten.bp.LocalDateTime
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
-
 import za.co.riggaroo.datecountdown.data.db.EventDatabase
 import za.co.riggaroo.datecountdown.data.entity.Event
-
-import junit.framework.Assert.assertEquals
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 /**
  * @author rebeccafranks

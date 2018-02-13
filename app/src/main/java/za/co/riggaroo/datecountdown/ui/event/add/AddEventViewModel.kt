@@ -27,7 +27,7 @@ open class AddEventViewModel @Inject constructor(var eventRepository: EventRepos
     }
 
     fun addEvent() {
-        if (eventName == null || eventDescription == null || eventDateTime == null){
+        if (eventName.isNullOrEmpty() || eventDescription.isNullOrEmpty() || eventDateTime == null){
             //TODO inform UI about issue with field
             return
         }

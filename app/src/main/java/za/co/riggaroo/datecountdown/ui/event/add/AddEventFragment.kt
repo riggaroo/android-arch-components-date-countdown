@@ -20,19 +20,18 @@ import org.threeten.bp.LocalDateTime
 import javax.inject.Inject
 
 import za.co.riggaroo.datecountdown.R
-import za.co.riggaroo.datecountdown.injection.CountdownViewModelFactory
 import za.co.riggaroo.datecountdown.injection.Injectable
 
 class AddEventFragment : Fragment(), DatePickerDialog.OnDateSetListener, Injectable {
 
     @Inject
     lateinit var countdownViewModelFactory: ViewModelProvider.Factory
-    private var editTextTitle: EditText? = null
-    private var editTextDescription: EditText? = null
-    private var buttonAddEvent: Button? = null
-    private var buttonSetDate: Button? = null
-    private var textViewCurrentDate: TextView? = null
-    private var addEventViewModel: AddEventViewModel? = null
+    private lateinit var editTextTitle: EditText
+    private lateinit var editTextDescription: EditText
+    private lateinit var buttonAddEvent: Button
+    private lateinit var buttonSetDate: Button
+    private lateinit var textViewCurrentDate: TextView
+    private lateinit var addEventViewModel: AddEventViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_add_event, container, false)
@@ -44,15 +43,15 @@ class AddEventFragment : Fragment(), DatePickerDialog.OnDateSetListener, Injecta
     }
 
     private fun setupViewModel() {
-        addEventViewModel = ViewModelProviders.of(this, countdownViewModelFactory!!)
+        addEventViewModel = ViewModelProviders.of(this, countdownViewModelFactory)
                 .get(AddEventViewModel::class.java)
-        editTextTitle?.setText(addEventViewModel?.eventName)
-        editTextDescription?.setText(addEventViewModel?.eventDescription)
-        textViewCurrentDate?.text = addEventViewModel?.eventDateTime!!.toString()
+        editTextTitle.setText(addEventViewModel.eventName)
+        editTextDescription.setText(addEventViewModel.eventDescription)
+        textViewCurrentDate.text = addEventViewModel.eventDateTime?.toString()
     }
 
     private fun setupClickListeners() {
-        editTextTitle?.addTextChangedListener(object : TextWatcher {
+        editTextTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
@@ -62,10 +61,10 @@ class AddEventFragment : Fragment(), DatePickerDialog.OnDateSetListener, Injecta
             }
 
             override fun afterTextChanged(s: Editable) {
-                addEventViewModel!!.eventName = s.toString()
+                addEventViewModel.eventName = s.toString()
             }
         })
-        editTextDescription?.addTextChangedListener(object : TextWatcher {
+        editTextDescription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
@@ -75,15 +74,15 @@ class AddEventFragment : Fragment(), DatePickerDialog.OnDateSetListener, Injecta
             }
 
             override fun afterTextChanged(s: Editable) {
-                addEventViewModel!!.eventDescription = s.toString()
+                addEventViewModel.eventDescription = s.toString()
             }
         })
-        buttonAddEvent!!.setOnClickListener {
-            addEventViewModel!!.addEvent()
-            activity!!.finish()
+        buttonAddEvent.setOnClickListener {
+            addEventViewModel.addEvent()
+            activity?.finish()
         }
-        buttonSetDate!!.setOnClickListener {
-            val localDateTime = addEventViewModel!!.eventDateTime
+        buttonSetDate.setOnClickListener {
+            val localDateTime = addEventViewModel.eventDateTime
             val datePickerDialog = DatePickerDialog(
                     context!!, this, localDateTime!!.year, localDateTime.monthValue - 1, localDateTime.dayOfMonth)
 
@@ -100,8 +99,8 @@ class AddEventFragment : Fragment(), DatePickerDialog.OnDateSetListener, Injecta
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, dayOfMonth: Int) {
-        addEventViewModel?.eventDateTime = LocalDateTime.of(year, month + 1, dayOfMonth, 0, 0)
-        textViewCurrentDate?.text = addEventViewModel?.eventDateTime?.toString()
+        addEventViewModel.eventDateTime = LocalDateTime.of(year, month + 1, dayOfMonth, 0, 0)
+        textViewCurrentDate.text = addEventViewModel.eventDateTime?.toString()
     }
 
 
