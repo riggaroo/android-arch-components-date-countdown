@@ -15,7 +15,7 @@ import za.co.riggaroo.datecountdown.data.entity.Event
 import za.co.riggaroo.datecountdown.repository.EventRepository
 
 
-open class AddEventViewModel @Inject constructor(var eventRepository: EventRepository) : ViewModel() {
+class AddEventViewModel @Inject constructor(var eventRepository: EventRepository) : ViewModel() {
 
     var eventName: String? = null
     var eventDescription: String? = null

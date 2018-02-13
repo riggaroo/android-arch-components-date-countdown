@@ -14,7 +14,7 @@ import timber.log.Timber
 import za.co.riggaroo.datecountdown.data.entity.Event
 import za.co.riggaroo.datecountdown.repository.EventRepository
 
-open class EventListViewModel @Inject constructor(var eventRepository: EventRepository) : ViewModel() {
+class EventListViewModel @Inject constructor(var eventRepository: EventRepository) : ViewModel() {
 
     fun getEvents() : LiveData<List<Event>>{
         return eventRepository.getEvents()
